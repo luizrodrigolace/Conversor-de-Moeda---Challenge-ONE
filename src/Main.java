@@ -62,10 +62,10 @@ public class Main {
                     targetCurrency  = "USD";
                     break;
                 case "7":
-                    break;
+                    continue;
                 default:
                     System.out.println("Opção invalida");
-                    break;
+                    continue;
             }
 
             System.out.println("Digite o valor que deseja converter:");
