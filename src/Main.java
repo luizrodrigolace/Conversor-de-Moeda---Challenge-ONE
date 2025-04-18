@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -67,14 +68,20 @@ public class Main {
                     break;
             }
 
-            //System.out.println("Digite o valor que deseja converter:");
-            //Double value = read.nextDouble() ;
+            System.out.println("Digite o valor que deseja converter:");
+            Double amount = read.nextDouble() ;
 
             ExchangeService exchangeService = new ExchangeService();
             ExchangeResponse response = exchangeService.getExchangeRates(baseCurrency);
+            Map<String,Double> conversionRates = response.getConversionRates();
+            Double conversionToExchange = conversionRates.get(targetCurrency);
 
-            System.out.println(response);
+            Double result = amount*conversionToExchange;
+            read.nextLine();
+
+            System.out.println(amount+" em "+baseCurrency+" => "+ result + " " + targetCurrency);
 
         } while (!option.equals("7"));
+        read.close();
     }
 }
